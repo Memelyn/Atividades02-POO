@@ -22,7 +22,7 @@ import org.json.JSONObject;
  */
 @WebServlet(name = "ApiLoteriaServlet", urlPatterns = {"/loteria.json"})
 public class ApiLoteriaServlet extends HttpServlet {
-    private ArrayList numerosLoteria = new ArrayList<>();
+    private ArrayList numerosLoteria;
        // int r = ((int)(60*Math.random()));
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,6 +36,8 @@ public class ApiLoteriaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+          numerosLoteria = new ArrayList<>();
+       
         
         numerosLoteria.add(((int)(60*Math.random())));
         numerosLoteria.add(((int)(60*Math.random())));
@@ -44,6 +46,7 @@ public class ApiLoteriaServlet extends HttpServlet {
         numerosLoteria.add(((int)(60*Math.random())));
         numerosLoteria.add(((int)(60*Math.random())));
         
+         
         try (PrintWriter out = response.getWriter()) {
          JSONObject obj = new JSONObject();
          obj.put("dateTime", new Date());
